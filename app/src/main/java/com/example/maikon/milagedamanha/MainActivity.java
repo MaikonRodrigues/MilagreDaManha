@@ -1,6 +1,5 @@
 package com.example.maikon.milagedamanha;
 
-import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.maikon.milagedamanha.Adapters.MyFragmentPageAdapter;
 import com.example.maikon.milagedamanha.Classes.VolleySingleton;
-import com.example.maikon.milagedamanha.Classes.user;
+import com.example.maikon.milagedamanha.Classes.User;
 import com.example.maikon.milagedamanha.Fragmentos.Fragmento_A;
 import com.example.maikon.milagedamanha.Fragmentos.Fragmento_B;
 
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity
     String emailUser, idLogado;
     ProgressDialog progresso;
     JsonObjectRequest jsonObjectReq;
-    user usuarioLogado;
+    User usuarioLogado;
     RequestQueue request;
     TextView nomeUser, emailUserLog;
     TextView nav_user, nav_email;
@@ -54,7 +53,7 @@ public class MainActivity extends AppCompatActivity
         itget = getIntent();
         idLogado = itget.getStringExtra("id");
         emailUser = "";
-        recuperarUser(idLogado);   //  Recuperando user pelo email
+        recuperarUser(idLogado);   //  Recuperando User pelo email
 
         // pegando textveiws do menu lateral
         nomeUser = (TextView)findViewById(R.id.nomeUser);
@@ -124,7 +123,7 @@ public class MainActivity extends AppCompatActivity
         try {
 
             for(int i = 0; i<json.length(); i++){
-                usuarioLogado = new user();
+                usuarioLogado = new User();
                 JSONObject jsonObject = null;
                 jsonObject = json.getJSONObject(i);
 
@@ -132,7 +131,7 @@ public class MainActivity extends AppCompatActivity
                 usuarioLogado.setId(jsonObject.optInt("idusers"));
                 usuarioLogado.setEmail(jsonObject.optString("email"));
 
-               // Toast.makeText(getApplicationContext(), "id user logado e = "+usuarioLogado.getId() , Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getApplicationContext(), "id User logado e = "+usuarioLogado.getId() , Toast.LENGTH_SHORT).show();
             }
             nav_user.setText(usuarioLogado.getNome());
             nav_email.setText(usuarioLogado.getEmail());

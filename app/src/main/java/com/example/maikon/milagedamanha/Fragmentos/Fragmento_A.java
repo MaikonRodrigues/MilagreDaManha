@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.maikon.milagedamanha.Adapters.Post_Adapter;
 import com.example.maikon.milagedamanha.Classes.Post;
+import com.example.maikon.milagedamanha.Classes.User;
 import com.example.maikon.milagedamanha.Classes.VolleySingleton;
 import com.example.maikon.milagedamanha.R;
 
@@ -104,7 +105,10 @@ public class Fragmento_A extends Fragment implements Response.ErrorListener, Res
                 idUserPost = jsonObject.getString("users_idusers");
                 listPost.add(post);
 
-
+                User user = new User();
+                User user2 = new User();
+                user.setContext(v.getContext());
+                user2 = user.recuperarUser(idUserPost, user );
 
             }
 

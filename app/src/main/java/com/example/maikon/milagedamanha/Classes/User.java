@@ -1,6 +1,6 @@
 package com.example.maikon.milagedamanha.Classes;
 
-import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
@@ -16,34 +16,31 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.BreakIterator;
-
-public class user implements Response.ErrorListener, Response.Listener<JSONObject> {
+public class User implements Response.ErrorListener, Response.Listener<JSONObject> {
     int id;
     String nome, email, dadoImg;
     JsonObjectRequest jsonObjectReq;
-    View v;
+    Context context;
     private Image imagemUser;
     private Bitmap imagem;
 
-    public user(int id, String nome, String email, String dadoImg, JsonObjectRequest jsonObjectReq, View v, Image imagemUser, Bitmap imagem) {
+    public User(int id, String nome, String email, String dadoImg, Context context, Image imagemUser, Bitmap imagem) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.dadoImg = dadoImg;
-        this.jsonObjectReq = jsonObjectReq;
-        this.v = v;
+        this.context = context;
         this.imagemUser = imagemUser;
         this.imagem = imagem;
     }
 
-    private user recuperarUser(String id, user user) {
+    public User recuperarUser(String id, User user) {
 
         if (id != "0") {
             String url = "http://www.ellego.com.br/webservice/MilagDaManha/recUser.php?id=" + id; // armazena o caminho do webservice no servidor
 
             jsonObjectReq = new JsonObjectRequest(Request.Method.GET, url, null, this, this);
-            VolleySingleton.getIntanciaVolley(v.getContext()).addToRequestQueue(jsonObjectReq);
+            VolleySingleton.getIntanciaVolley(context).addToRequestQueue(jsonObjectReq);
 
         } else {
             return user;
@@ -52,19 +49,19 @@ public class user implements Response.ErrorListener, Response.Listener<JSONObjec
     }
     @Override
     public void onResponse(JSONObject response) {
-        JSONArray json = response.optJSONArray("user");
+        JSONArray json = response.optJSONArray("User");
         for(int i = 0; i<json.length(); i++){
 
-            user user = new user();
+            User User = new User();
             JSONObject jsonObject = null;
             try {
                 jsonObject = json.getJSONObject(i);
-                user.setId(jsonObject.optInt("id"));
-                user.setNome(jsonObject.getString("nome"));
-                user.setDadoImg(jsonObject.getString("imagem"));
-                user.setEmail(jsonObject.getString("email"));
+                User.setId(jsonObject.optInt("id"));
+                User.setNome(jsonObject.getString("nome"));
+                User.setDadoImg(jsonObject.getString("imagem"));
+                User.setEmail(jsonObject.getString("email"));
 
-                recuperarUser( "0", user);
+                recuperarUser( "0", User);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -98,8 +95,16 @@ public class user implements Response.ErrorListener, Response.Listener<JSONObjec
         this.imagem = imagem;
     }
 
-    public user() {
+    public User() {
 
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 
     public int getId() {
