@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Fragmento_A extends Fragment implements Response.ErrorListener, Response.Listener<JSONObject> {
-
+    // senha 616254
 
     View v;
     RecyclerView myrecycleView;
@@ -103,12 +103,14 @@ public class Fragmento_A extends Fragment implements Response.ErrorListener, Res
                 post.setDescricao(jsonObject.getString("descricao"));
                 post.setDadoImg(jsonObject.getString("imagem"));
                 idUserPost = jsonObject.getString("users_idusers");
-                listPost.add(post);
+
 
                 User user = new User();
                 User user2 = new User();
                 user.setContext(v.getContext());
                 user2 = user.recuperarUser(idUserPost, user );
+                post.setNomeUser(user2.getNome());
+                listPost.add(post);
 
             }
 
