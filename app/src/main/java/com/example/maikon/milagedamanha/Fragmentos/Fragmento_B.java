@@ -1,5 +1,6 @@
 package com.example.maikon.milagedamanha.Fragmentos;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -30,6 +31,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressLint("ValidFragment")
 public class Fragmento_B extends Fragment implements Response.ErrorListener, Response.Listener<JSONObject> {
     @Nullable
 
@@ -42,12 +44,19 @@ public class Fragmento_B extends Fragment implements Response.ErrorListener, Res
     JsonObjectRequest jsonObjectReq;
     Post_Adapter adapter;
     Post post;
+    String id;
 
+    @SuppressLint("ValidFragment")
+    public Fragmento_B(String id) {
+        this.id = id;
+    }
+
+    @SuppressLint("WrongViewCast")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         v =  inflater.inflate(R.layout.fragment_b, container, false);
-        myrecycleView = (RecyclerView) v.findViewById(R.id.my_recycler_view_sguindo);
+        myrecycleView = (RecyclerView) v.findViewById(R.id.my_recycler_view_voce);
 
         myrecycleView.setLayoutManager(new LinearLayoutManager(getActivity()));
         //myrecycleView.setAdapter(adapter);
@@ -69,6 +78,7 @@ public class Fragmento_B extends Fragment implements Response.ErrorListener, Res
         jsonObjectReq = new JsonObjectRequest(Request.Method.GET, url, null, this,this);
         VolleySingleton.getIntanciaVolley(getContext()).addToRequestQueue(jsonObjectReq);
         //request.add(jsonObjectReq);
+        Toast.makeText(getContext(), "Id logado :" +id , Toast.LENGTH_SHORT).show();
     }
     @Override
     public void onErrorResponse(VolleyError error) {

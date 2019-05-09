@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         itget = getIntent();
-        idLogado = itget.getStringExtra("id");
+        idLogado = "82";//itget.getStringExtra("id");
         emailUser = "";
         recuperarUser(idLogado);   //  Recuperando User pelo email
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity
 
         MyFragmentPageAdapter adapter = new MyFragmentPageAdapter( getSupportFragmentManager() );
         adapter.adicionar( new Fragmento_A() , "Seguindo");
-        adapter.adicionar( new Fragmento_B(), "Você");
+        adapter.adicionar( new Fragmento_B(idLogado), "Você");
 
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.abas_view_pager);
