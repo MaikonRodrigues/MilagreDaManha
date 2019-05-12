@@ -95,7 +95,6 @@ public class Fragmento_B extends Fragment implements Response.ErrorListener, Res
 
             for(int i = 0; i<json.length(); i++){
 
-
                 post = new Post();
                 JSONObject jsonObject = null;
                 jsonObject = json.getJSONObject(i);
@@ -105,12 +104,10 @@ public class Fragmento_B extends Fragment implements Response.ErrorListener, Res
                 post.setDadoImg(jsonObject.getString("imagem"));
                 idUserPost = jsonObject.getString("users_idusers");
 
+                if (jsonObject.get("id") == jsonObject.get("users_idusers")){
 
-                User user = new User();
-                User user2 = new User();
-                user.setContext(v.getContext());
-                user2 = user.recuperarUser(idUserPost, user );
-                post.setNomeUser(user2.getNome());
+                }
+
                 listPost.add(post);
 
             }

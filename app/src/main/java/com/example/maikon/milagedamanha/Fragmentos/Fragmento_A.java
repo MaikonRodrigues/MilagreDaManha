@@ -36,6 +36,7 @@ public class Fragmento_A extends Fragment implements Response.ErrorListener, Res
     View v;
     RecyclerView myrecycleView;
     private List<Post> listPost;
+    String arguments;
 
     ProgressDialog progresso;
     JsonObjectRequest jsonObjectReq;
@@ -104,12 +105,6 @@ public class Fragmento_A extends Fragment implements Response.ErrorListener, Res
                 post.setDadoImg(jsonObject.getString("imagem"));
                 idUserPost = jsonObject.getString("users_idusers");
 
-
-                User user = new User();
-                User user2 = new User();
-                user.setContext(v.getContext());
-                user2 = user.recuperarUser(idUserPost, user );
-                post.setNomeUser(user2.getNome());
                 listPost.add(post);
 
             }
@@ -126,5 +121,6 @@ public class Fragmento_A extends Fragment implements Response.ErrorListener, Res
         }
 
     }
+
 
 }

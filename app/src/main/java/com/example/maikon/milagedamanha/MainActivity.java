@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         itget = getIntent();
-        idLogado = itget.getStringExtra("id");
+        idLogado = "82"; //itget.getStringExtra("id");
         emailUser = "";
         recuperarUser(idLogado);   //  Recuperando User pelo email
 
@@ -85,13 +85,11 @@ public class MainActivity extends AppCompatActivity
         nav_user = (TextView)hView.findViewById(R.id.nomeUser);
         nav_email = (TextView)hView.findViewById(R.id.emailUser);
 
-
         MyFragmentPageAdapter adapter = new MyFragmentPageAdapter( getSupportFragmentManager() );
-        adapter.adicionar( new Fragmento_A() , "Seguindo");
+        adapter.adicionar( new Fragmento_A(), "Seguindo");
         adapter.adicionar( new Fragmento_B(), "Você");
 
-
-        ViewPager viewPager = (ViewPager) findViewById(R.id.abas_view_pager);
+       ViewPager viewPager = (ViewPager) findViewById(R.id.abas_view_pager);
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.abas);
@@ -104,7 +102,7 @@ public class MainActivity extends AppCompatActivity
         progresso.setMessage("Carregando...");
         progresso.show();
 
-        String url = "http://www.ellego.com.br/webservice/MilagDaManha/recUser.php?id="+id; // armazena o caminho do webservice no servidor
+        String url = "http://www.ellego.com.br/webservice/MilagDaManha/recUser.php"; // armazena o caminho do webservice no servidor
 
         jsonObjectReq = new JsonObjectRequest(Request.Method.GET, url, null, this,this);
         //request.add(jsonObjectReq);

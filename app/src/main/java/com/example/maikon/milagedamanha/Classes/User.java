@@ -34,19 +34,7 @@ public class User implements Response.ErrorListener, Response.Listener<JSONObjec
         this.imagem = imagem;
     }
 
-    public User recuperarUser(String id, User user) {
 
-        if (id != "0") {
-            String url = "http://www.ellego.com.br/webservice/MilagDaManha/recUser.php?id=" + id; // armazena o caminho do webservice no servidor
-
-            jsonObjectReq = new JsonObjectRequest(Request.Method.GET, url, null, this, this);
-            VolleySingleton.getIntanciaVolley(context).addToRequestQueue(jsonObjectReq);
-
-        } else {
-            return user;
-        }
-        return user;
-    }
     @Override
     public void onResponse(JSONObject response) {
         JSONArray json = response.optJSONArray("User");
@@ -55,13 +43,13 @@ public class User implements Response.ErrorListener, Response.Listener<JSONObjec
             User User = new User();
             JSONObject jsonObject = null;
             try {
+
                 jsonObject = json.getJSONObject(i);
                 User.setId(jsonObject.optInt("id"));
                 User.setNome(jsonObject.getString("nome"));
                 User.setDadoImg(jsonObject.getString("imagem"));
                 User.setEmail(jsonObject.getString("email"));
 
-                recuperarUser( "0", User);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
