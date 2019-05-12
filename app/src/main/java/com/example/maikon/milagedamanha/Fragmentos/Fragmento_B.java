@@ -31,7 +31,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressLint("ValidFragment")
+
 public class Fragmento_B extends Fragment implements Response.ErrorListener, Response.Listener<JSONObject> {
     @Nullable
 
@@ -46,12 +46,7 @@ public class Fragmento_B extends Fragment implements Response.ErrorListener, Res
     Post post;
     String id;
 
-    @SuppressLint("ValidFragment")
-    public Fragmento_B(String id) {
-        this.id = id;
-    }
 
-    @SuppressLint("WrongViewCast")
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
