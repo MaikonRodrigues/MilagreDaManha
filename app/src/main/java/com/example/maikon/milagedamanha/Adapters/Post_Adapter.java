@@ -47,15 +47,16 @@ public class Post_Adapter extends RecyclerView.Adapter<Post_Adapter.PostHolder> 
     @Override
     public void onBindViewHolder(@NonNull PostHolder holder, final int position) {
 
-       // holder.nomeUser.setText(listPost.get(position).getNomeUser());
-        //holder.postData.setText((CharSequence) listPost.get(position).getDataPost());
+        Toast.makeText(mContext, "nome do usuario: "+ listPost.get(position).getNomeUser(), Toast.LENGTH_SHORT).show();
+
+        holder.nomeUser.setText(listPost.get(position).getNomeUser());
         holder.descricao.setText(listPost.get(position).getDescricao());
+        holder.postData.setText(listPost.get(position).getDataPost());
 
 
         if (listPost.get(position).getImagem() != null){
 
             listPost.get(position).setDadoImg(listPost.get(position).getDadoImg());
-
             holder.imagemPost.setImageBitmap(listPost.get(position).getImagem());
 
         }else {

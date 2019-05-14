@@ -37,7 +37,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Response.ErrorListener, Response.Listener<JSONObject> {
     Intent itget;
-    String emailUser, idLogado;
+    String emailUser, idLogado, nomeLogado;
     ProgressDialog progresso;
     JsonObjectRequest jsonObjectReq;
     User usuarioLogado;
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity
 
         itget = getIntent();
         idLogado = "82"; //itget.getStringExtra("id");
+        nomeLogado = "Usuario"; //itget.getStringExtra("nome");
         emailUser = "";
         recuperarUser(idLogado);   //  Recuperando User pelo email
 
@@ -183,7 +184,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }
         if (id == R.id.action_criapost) {
-            Intent intent = new Intent(this, CriaPostActivity.class).putExtra("id", idLogado);;
+            Intent intent = new Intent(this, CriaPostActivity.class).putExtra("id", idLogado);
+            intent.putExtra("nome", nomeLogado);
             startActivity(intent);
         }
 

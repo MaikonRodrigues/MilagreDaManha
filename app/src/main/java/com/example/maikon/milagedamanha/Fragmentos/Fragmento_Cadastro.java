@@ -101,6 +101,7 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
         Toast.makeText( v.getContext(), "Cadastrado com sucesso ", Toast.LENGTH_SHORT).show();
 
         Intent it = new Intent(v.getContext(), MainActivity.class).putExtra("id", jsonObject.optString("idusers"));
+        it.putExtra("nome", jsonObject.optString("nome") );
         startActivity(it);
     }
 

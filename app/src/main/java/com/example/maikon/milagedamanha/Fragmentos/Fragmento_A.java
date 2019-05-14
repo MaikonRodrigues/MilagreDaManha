@@ -100,9 +100,11 @@ public class Fragmento_A extends Fragment implements Response.ErrorListener, Res
                 JSONObject jsonObject = null;
                 jsonObject = json.getJSONObject(i);
 
-                post.setId(jsonObject.optInt("id"));
+                post.setId(jsonObject.optInt("idpost"));
+                post.setNomeUser(jsonObject.getString("nome_user"));
                 post.setDescricao(jsonObject.getString("descricao"));
                 post.setDadoImg(jsonObject.getString("imagem"));
+                post.setDataPost(jsonObject.getString("data"));
                 idUserPost = jsonObject.getString("users_idusers");
 
                 listPost.add(post);

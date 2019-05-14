@@ -11,14 +11,14 @@ public class Post {
 
     private String descricao, nomeUser, dadoImg;
     private int tempMilagre, qtdEstrelas, id;
-    private Date dataPost;
+    private String dataPost;
     private Image imagemUser, imagePost;
     private Bitmap imagem;
 
     public Post() {
     }
 
-    public Post(String descricao, String nomeUser, int tempMilagre, int qtdEstrelas, Date dataPost, Image imagemUser, Image imagePost, int id) {
+    public Post(String descricao, String nomeUser, int tempMilagre, int qtdEstrelas, String dataPost, Image imagemUser, Image imagePost, int id) {
         this.descricao = descricao;
         this.nomeUser = nomeUser;
         this.tempMilagre = tempMilagre;
@@ -91,11 +91,11 @@ public class Post {
         this.qtdEstrelas = qtdEstrelas;
     }
 
-    public Date getDataPost() {
+    public String getDataPost() {
         return dataPost;
     }
 
-    public void setDataPost(Date dataPost) {
+    public void setDataPost(String dataPost) {
         this.dataPost = dataPost;
     }
 
