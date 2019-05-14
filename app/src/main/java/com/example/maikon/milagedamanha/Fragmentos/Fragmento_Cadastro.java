@@ -40,6 +40,7 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragmento_cadastro, container, false);
+
         usuarioLogado = new User();
         nome = (EditText) v.findViewById(R.id.nome);
         email = (EditText) v.findViewById(R.id.email);
@@ -99,6 +100,7 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
             e.printStackTrace();
         }
         Toast.makeText( v.getContext(), "Cadastrado com sucesso ", Toast.LENGTH_SHORT).show();
+
 
         Intent it = new Intent(v.getContext(), MainActivity.class).putExtra("id", jsonObject.optString("idusers"));
         it.putExtra("nome", jsonObject.optString("nome") );
