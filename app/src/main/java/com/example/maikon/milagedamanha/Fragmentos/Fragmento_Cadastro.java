@@ -18,12 +18,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.example.maikon.milagedamanha.Classes.User;
 import com.example.maikon.milagedamanha.Classes.VolleySingleton;
+import com.example.maikon.milagedamanha.CriaPostActivity;
 import com.example.maikon.milagedamanha.MainActivity;
 import com.example.maikon.milagedamanha.R;
 
@@ -33,6 +36,8 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Fragmento_Cadastro extends Fragment implements Response.ErrorListener, Response.Listener<JSONObject> {
     View v;
@@ -45,6 +50,7 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
     String idLogado;
     ImageView imgUser;
     Bitmap bitmap = null;
+    StringRequest stringRequest;
 
     private static final int COD_SELECIONA = 10;
 
@@ -86,7 +92,7 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
                         }else{
                             Toast.makeText(v.getContext(), "As senhas não são iguais", Toast.LENGTH_SHORT).show();
                         }
-                    
+
 
                 }
             }
@@ -126,10 +132,56 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
         }
         Toast.makeText( v.getContext(), "Cadastrado com sucesso ", Toast.LENGTH_SHORT).show();
 
+        addFoto(jsonObject.optString("idusers")); // Chamo a funcao para add a foto
 
         Intent it = new Intent(v.getContext(), MainActivity.class).putExtra("id", jsonObject.optString("idusers"));
         it.putExtra("nome", jsonObject.optString("nome") );
         startActivity(it);
+    }
+
+    private void addFoto(final String idusers) {
+        // Crio a string para envio para api
+        String url = "http://www.ellego.com.br/webservice/MilagDaManha/registrarFotoUser.php";
+
+        stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                progresso.hide();
+
+                if (response.trim().equalsIgnoreCase("nao registra")) {
+
+                    Toast.makeText(v.getContext(), "Registro não inserido, erro: " + response, Toast.LENGTH_SHORT).show();
+
+                } else {
+                    Toast.makeText(v.getContext(), "Foto adicionada", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(v.getContext(), "Erro ao Registrar erro: "+ error, Toast.LENGTH_SHORT).show();
+                progresso.hide();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams()  throws AuthFailureError {
+
+                String imagem = converterImgString(bitmap);
+                Map<String,String> parametros = new HashMap<>();
+                parametros.put("imagem", imagem);
+                parametros.put("id", idusers);
+                return parametros;
+            }
+
+        };
+
+        // requestQueue.add(stringRequest);
+        VolleySingleton.getIntanciaVolley(v.getContext()).addToRequestQueue(stringRequest);
+
     }
 
     @Override

@@ -47,13 +47,11 @@ public class Post_Adapter extends RecyclerView.Adapter<Post_Adapter.PostHolder> 
     @Override
     public void onBindViewHolder(@NonNull PostHolder holder, final int position) {
 
-        Toast.makeText(mContext, "nome do usuario: "+ listPost.get(position).getNomeUser(), Toast.LENGTH_SHORT).show();
-
         holder.nomeUser.setText(listPost.get(position).getNomeUser());
         holder.descricao.setText(listPost.get(position).getDescricao());
         holder.postData.setText(listPost.get(position).getDataPost());
 
-
+        //  Tratamento de erro para falta de imagem nos post
         if (listPost.get(position).getImagem() != null){
 
             listPost.get(position).setDadoImg(listPost.get(position).getDadoImg());
@@ -61,6 +59,16 @@ public class Post_Adapter extends RecyclerView.Adapter<Post_Adapter.PostHolder> 
 
         }else {
             holder.imagemPost.setImageResource(R.drawable.sem_foto);
+        }
+
+        //  Tratamento de erro para falta de imagem dos usuarios
+        if (listPost.get(position).getImagem2() != null){
+
+            listPost.get(position).setDadoImg2(listPost.get(position).getDadoImg2());
+            holder.imgUser.setImageBitmap(listPost.get(position).getImagem2());
+
+        }else {
+            holder.imgUser.setImageResource(R.drawable.com_facebook_profile_picture_blank_square);
         }
 
 
@@ -87,7 +95,7 @@ public class Post_Adapter extends RecyclerView.Adapter<Post_Adapter.PostHolder> 
     public class PostHolder extends RecyclerView.ViewHolder {
         CardView meuCard;
         TextView nomeUser, postData, descricao;
-        ImageView imagemPost;
+        ImageView imagemPost, imgUser;
         public PostHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -97,6 +105,7 @@ public class Post_Adapter extends RecyclerView.Adapter<Post_Adapter.PostHolder> 
             descricao = (TextView) itemView.findViewById(R.id.text_descricao);
 
             imagemPost = (ImageView)itemView.findViewById(R.id.imagePost);
+            imgUser = (ImageView)itemView.findViewById(R.id.item_fotoUser);
 
         }
     }

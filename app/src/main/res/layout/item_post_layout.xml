@@ -97,7 +97,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="Tempo do milagre"
-                        android:textSize="6dp" />
+                        android:textSize="8dp" />
 
                     <TextView
                         android:id="@+id/textNumMinTempMilagre"
@@ -105,7 +105,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="30.00min"
-                        android:textSize="8dp"
+                        android:textSize="10dp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -196,14 +196,14 @@
                             android:layout_alignParentLeft="true"
                             android:gravity="center"
                             android:text="Conquistas"
-                            android:textSize="6dp" />
+                            android:textSize="8dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="2"
-                            android:textSize="8dp"
+                            android:textSize="10dp"
                             android:textStyle="bold" />
 
 
@@ -224,12 +224,45 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
                 android:adjustViewBounds="true"
-                android:layout_marginBottom="10dp"
                 android:src="@mipmap/amanhecer" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="193dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="like " />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="193dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="comentar" />
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </LinearLayout>
 
 
     </android.support.v7.widget.CardView>
+
 </LinearLayout>

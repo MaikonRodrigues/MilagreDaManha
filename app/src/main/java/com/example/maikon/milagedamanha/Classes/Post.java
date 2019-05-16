@@ -9,11 +9,11 @@ import java.util.Date;
 
 public class Post {
 
-    private String descricao, nomeUser, dadoImg;
+    private String descricao, nomeUser, dadoImg, dadoImg2;
     private int tempMilagre, qtdEstrelas, id;
     private String dataPost;
     private Image imagemUser, imagePost;
-    private Bitmap imagem;
+    private Bitmap imagem, imagem2;
 
     public Post() {
     }
@@ -42,76 +42,97 @@ public class Post {
             e.printStackTrace();
         }
     }
+    public void setDadoImg2(String dadoImg) {
+        this.dadoImg2 = dadoImg;
+        try{
+            byte[] byteCode = Base64.decode(dadoImg, Base64.DEFAULT);
+            this.imagem2 = BitmapFactory.decodeByteArray(byteCode, 0, byteCode.length);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public Bitmap getImagem() {
         return imagem;
     }
+    public Bitmap getImagem2() {
+        return imagem2;
+    }
 
+    public void setImagem2(Bitmap imagem2) {
+        this.imagem2 = imagem2;
+    }
     public void setImagem(Bitmap imagem) {
         this.imagem = imagem;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getNomeUser() {
-        return nomeUser;
-    }
-
-    public void setNomeUser(String nomeUser) {
-        this.nomeUser = nomeUser;
-    }
-
-    public int getTempMilagre() {
-        return tempMilagre;
-    }
-
-    public void setTempMilagre(int tempMilagre) {
-        this.tempMilagre = tempMilagre;
-    }
-
-    public int getQtdEstrelas() {
-        return qtdEstrelas;
-    }
-
-    public void setQtdEstrelas(int qtdEstrelas) {
-        this.qtdEstrelas = qtdEstrelas;
-    }
-
-    public String getDataPost() {
-        return dataPost;
-    }
-
-    public void setDataPost(String dataPost) {
-        this.dataPost = dataPost;
-    }
-
-    public Image getImagemUser() {
-        return imagemUser;
-    }
-
-    public void setImagemUser(Image imagemUser) {
-        this.imagemUser = imagemUser;
     }
 
     public Image getImagePost() {
         return imagePost;
     }
 
+    public String getDadoImg2() {
+        return dadoImg2;
+    }
     public void setImagePost(Image imagePost) {
         this.imagePost = imagePost;
     }
+
+
+
+
+
+
+
+
+    // get and set do nome do usuario
+    public String getNomeUser() {
+        return nomeUser;
+    }
+    public void setNomeUser(String nomeUser) {
+        this.nomeUser = nomeUser;
+    }
+
+    // get and set do id
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    // get and set da descricao
+    public String getDescricao() {
+        return descricao;
+    }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    // get and set do tempo do milagre
+    public int getTempMilagre() {
+        return tempMilagre;
+    }
+    public void setTempMilagre(int tempMilagre) {
+        this.tempMilagre = tempMilagre;
+    }
+
+    // get and set das estrelas
+    public int getQtdEstrelas() {
+        return qtdEstrelas;
+    }
+    public void setQtdEstrelas(int qtdEstrelas) {
+        this.qtdEstrelas = qtdEstrelas;
+    }
+
+    //  Get and set da data do post
+    public String getDataPost() {
+        return dataPost;
+    }
+    public void setDataPost(String dataPost) {
+        this.dataPost = dataPost;
+    }
+
+
+
+
 }
