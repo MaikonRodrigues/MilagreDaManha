@@ -86,9 +86,33 @@ public class Post_Adapter extends RecyclerView.Adapter<Post_Adapter.PostHolder> 
             }
         });
 
-        if (holder.imgLike.isClickable()){
-            Toast.makeText(mContext, "like", Toast.LENGTH_SHORT);
-        }
+         holder.imgLike.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < getItemCount(); i++) {
+                    if (position == i) {
+                        Toast toast = Toast.makeText(v.getContext(),
+                                "Like", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+
+            }
+        });
+
+        holder.imgComent.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < getItemCount(); i++) {
+                    if (position == i) {
+                        Toast toast = Toast.makeText(v.getContext(),
+                                "Comentario", Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
+                }
+
+            }
+        });
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.example.maikon.milagedamanha.Fragmentos;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -131,6 +132,13 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
             e.printStackTrace();
         }
         Toast.makeText( v.getContext(), "Cadastrado com sucesso ", Toast.LENGTH_SHORT).show();
+
+        // setar usuario como logado
+        SharedPreferences prefs = this.getActivity().getSharedPreferences("meu_arquivo_de_preferencias", 0);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("estaLogado", true);
+
+        editor.commit();
 
         addFoto(jsonObject.optString("idusers")); // Chamo a funcao para add a foto
 

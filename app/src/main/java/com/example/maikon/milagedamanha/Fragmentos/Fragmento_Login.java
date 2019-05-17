@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -27,8 +28,9 @@ import java.util.Map;
 
 public class Fragmento_Login extends Fragment {
     View v;
+    TextView btnNaoTenhoConta;
     EditText email, senha;
-    Button btnNaoTenhoConta, btnLogar;
+    Button  btnLogar;
 
     public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragmento_login, container, false);
@@ -36,7 +38,7 @@ public class Fragmento_Login extends Fragment {
         email = (EditText) v.findViewById(R.id.email_login);
         senha = (EditText) v.findViewById(R.id.password_login);
         btnLogar = (Button) v.findViewById(R.id.btnLogar);
-        btnNaoTenhoConta = (Button) v.findViewById(R.id.btnNaotenhoConta);
+        btnNaoTenhoConta = (TextView) v.findViewById(R.id.btnNaotenhoConta);
 
         btnNaoTenhoConta.setOnClickListener(new View.OnClickListener() {
             @Override
