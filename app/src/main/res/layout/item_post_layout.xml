@@ -100,7 +100,7 @@
                         android:textSize="8dp" />
 
                     <TextView
-                        android:id="@+id/textNumMinTempMilagre"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -184,7 +184,7 @@
 
 
                     <LinearLayout
-                        android:id="@+id/textNumConq"
+
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -226,35 +226,65 @@
                 android:adjustViewBounds="true"
                 android:src="@mipmap/amanhecer" />
 
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="193dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <Button
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="like " />
+                        android:layout_marginEnd="10dp"
+                        android:text="0" />
+
+
+                    <ImageView
+                        android:id="@+id/imgLike"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@mipmap/ic_like" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="193dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <Button
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="comentar" />
+                        android:layout_marginEnd="10dp"
+                        android:text="0" />
+
+                    <ImageView
+                        android:id="@+id/imgComent"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@mipmap/ic_chat" />
 
                 </LinearLayout>
 

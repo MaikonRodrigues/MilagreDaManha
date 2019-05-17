@@ -47,8 +47,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/like.png" />
-                                      <entry key="outputName" value="ic_like" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/chat.png" />
+                                      <entry key="outputName" value="ic_chat" />
                                     </map>
                                   </option>
                                 </PersistentState>

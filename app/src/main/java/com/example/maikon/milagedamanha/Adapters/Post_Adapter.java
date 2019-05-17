@@ -85,6 +85,10 @@ public class Post_Adapter extends RecyclerView.Adapter<Post_Adapter.PostHolder> 
 
             }
         });
+
+        if (holder.imgLike.isClickable()){
+            Toast.makeText(mContext, "like", Toast.LENGTH_SHORT);
+        }
     }
 
     @Override
@@ -95,7 +99,7 @@ public class Post_Adapter extends RecyclerView.Adapter<Post_Adapter.PostHolder> 
     public class PostHolder extends RecyclerView.ViewHolder {
         CardView meuCard;
         TextView nomeUser, postData, descricao;
-        ImageView imagemPost, imgUser;
+        ImageView imagemPost, imgUser, imgLike, imgComent;
         public PostHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -106,6 +110,9 @@ public class Post_Adapter extends RecyclerView.Adapter<Post_Adapter.PostHolder> 
 
             imagemPost = (ImageView)itemView.findViewById(R.id.imagePost);
             imgUser = (ImageView)itemView.findViewById(R.id.item_fotoUser);
+
+            imgLike = (ImageView)itemView.findViewById(R.id.imgLike);
+            imgComent = (ImageView)itemView.findViewById(R.id.imgComent);
 
         }
     }
