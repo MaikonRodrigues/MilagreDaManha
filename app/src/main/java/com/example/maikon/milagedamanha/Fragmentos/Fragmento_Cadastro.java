@@ -144,6 +144,7 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
 
         Intent it = new Intent(v.getContext(), MainActivity.class).putExtra("id", jsonObject.optString("idusers"));
         it.putExtra("nome", jsonObject.optString("nome") );
+        it.putExtra("email", jsonObject.optString("email") );
         startActivity(it);
     }
 

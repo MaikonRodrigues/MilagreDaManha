@@ -64,10 +64,10 @@ public class MainActivity extends AppCompatActivity
         }
 
         itget = getIntent();
-        idLogado = "82"; //itget.getStringExtra("id");
-        nomeLogado = "Usuario"; //itget.getStringExtra("nome");
-        emailUser = "";
-        recuperarUser(idLogado);   //  Recuperando User pelo email
+        idLogado = itget.getStringExtra("id");
+        nomeLogado = itget.getStringExtra("nome");
+        emailUser = itget.getStringExtra("email");
+        //recuperarUser(idLogado);   //  Recuperando User pelo email
 
         // pegando textveiws do menu lateral
         nomeUser = (TextView)findViewById(R.id.nomeUser);
