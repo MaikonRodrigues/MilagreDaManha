@@ -1,5 +1,6 @@
 package com.example.maikon.milagedamanha.Fragmentos;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,6 +20,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.example.maikon.milagedamanha.Classes.VolleySingleton;
 import com.example.maikon.milagedamanha.LoginCadastroActivity;
 import com.example.maikon.milagedamanha.MainActivity;
 import com.example.maikon.milagedamanha.R;
@@ -27,7 +29,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Fragmento_Login extends Fragment {
-    View v;
+    View v; ProgressDialog progresso;
     TextView btnNaoTenhoConta;
     EditText email, senha;
     Button  btnLogar;
@@ -57,11 +59,16 @@ public class Fragmento_Login extends Fragment {
     }
 
     private void logar() {
-        StringRequest request = new StringRequest(Request.Method.POST,
-                "http://www.ellego.com.br/webservice/MilagDaManha/login.php",
+
+        progresso = new ProgressDialog(v.getContext());
+        progresso.setMessage("Carregando...");
+        progresso.show();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,"http://www.ellego.com.br/webservice/MilagDaManha/login.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        progresso.hide();
 
                         if (response.contains("1")){
                             startActivity(new Intent(v.getContext(), MainActivity.class));
@@ -72,6 +79,8 @@ public class Fragmento_Login extends Fragment {
                 },new Response.ErrorListener(){
             @Override
             public void onErrorResponse(VolleyError error) {
+                progresso.hide();
+                Toast.makeText(v.getContext(),"erro", Toast.LENGTH_SHORT);
 
             }
         }){
@@ -84,5 +93,7 @@ public class Fragmento_Login extends Fragment {
                 return params;
             }
         };
+
+        VolleySingleton.getIntanciaVolley(v.getContext()).addToRequestQueue(stringRequest);
     }
 }

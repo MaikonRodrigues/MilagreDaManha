@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity
         } catch (JSONException e){
             progresso.hide();
 
-            Toast.makeText(getApplicationContext(), "Não foi possível listar "+response , Toast.LENGTH_SHORT).show();
+           // Toast.makeText(getApplicationContext(), "Não foi possível listar "+response , Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity
     public void onErrorResponse(VolleyError error) {
         progresso.hide();
 
-        Toast.makeText(getApplicationContext(), "Não foi possível listar " +error.toString() , Toast.LENGTH_SHORT).show();
+       // Toast.makeText(getApplicationContext(), "Não foi possível listar " +error.toString() , Toast.LENGTH_SHORT).show();
 
     }
 
