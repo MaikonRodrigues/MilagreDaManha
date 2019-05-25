@@ -36,7 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, Response.ErrorListener, Response.Listener<JSONObject> {
+        implements NavigationView.OnNavigationItemSelectedListener{//, Response.ErrorListener, Response.Listener<JSONObject> {
     Intent itget;
     String emailUser, idLogado, nomeLogado;
     ProgressDialog progresso;
@@ -52,11 +52,14 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         // verificacao do usuario logado
-        SharedPreferences prefs = getSharedPreferences("meu_arquivo_de_preferencias", 0);
+        SharedPreferences prefs = getSharedPreferences("meu_arquivo_de_preferencias", MODE_PRIVATE);
         boolean jaLogou = prefs.getBoolean("estaLogado", false);
+        SharedPreferences.Editor editor = prefs.edit();
+        String nome = prefs.getString("nome", "sem nome");
 
         if(jaLogou) {
             // chama a tela inicial
+            Toast.makeText(this,"Nome das preferencias: "+ nome,Toast.LENGTH_SHORT).show();
         }else {
             // chama a tela de login
             Intent intent = new Intent(this, LoginCadastroActivity.class);
@@ -68,11 +71,6 @@ public class MainActivity extends AppCompatActivity
         nomeLogado = itget.getStringExtra("nome");
         emailUser = itget.getStringExtra("email");
         //recuperarUser(idLogado);   //  Recuperando User pelo email
-
-        // pegando textveiws do menu lateral
-        nomeUser = (TextView)findViewById(R.id.nomeUser);
-        emailUserLog = (TextView)findViewById(R.id.emailUser);
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -96,21 +94,25 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         View hView =  navigationView.getHeaderView(0);
+        // pegando textveiws do menu lateral
         nav_user = (TextView)hView.findViewById(R.id.nomeUser);
         nav_email = (TextView)hView.findViewById(R.id.emailUser);
+
+        nav_user.setText(nome);
+        nav_email.setText(prefs.getString("email",""));
 
         MyFragmentPageAdapter adapter = new MyFragmentPageAdapter( getSupportFragmentManager() );
         adapter.adicionar( new Fragmento_A(), "Seguindo");
         adapter.adicionar( new Fragmento_B(), "Você");
 
-       ViewPager viewPager = (ViewPager) findViewById(R.id.abas_view_pager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.abas_view_pager);
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.abas);
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    private void recuperarUser(String id) {
+   /* private void recuperarUser(String id) {
 
         progresso = new ProgressDialog(this);
         progresso.setMessage("Carregando...");
@@ -145,8 +147,8 @@ public class MainActivity extends AppCompatActivity
 
                // Toast.makeText(getApplicationContext(), "id User logado e = "+usuarioLogado.getId() , Toast.LENGTH_SHORT).show();
             }
-            nav_user.setText(usuarioLogado.getNome());
-            nav_email.setText(usuarioLogado.getEmail());
+           // nav_user.setText(usuarioLogado.getNome());
+           // nav_email.setText(usuarioLogado.getEmail());
 
 
             progresso.hide();
@@ -165,7 +167,7 @@ public class MainActivity extends AppCompatActivity
 
        // Toast.makeText(getApplicationContext(), "Não foi possível listar " +error.toString() , Toast.LENGTH_SHORT).show();
 
-    }
+    }*/
 
     @Override
     public void onBackPressed() {
