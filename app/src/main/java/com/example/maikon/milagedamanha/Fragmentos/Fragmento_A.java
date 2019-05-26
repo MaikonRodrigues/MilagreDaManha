@@ -80,7 +80,7 @@ public class Fragmento_A extends Fragment implements Response.ErrorListener, Res
     public void onErrorResponse(VolleyError error) {
         progresso.hide();
 
-        Toast.makeText(getContext(), "Não foi possível listar " +error.toString() , Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), "Não foi possível listar " +error.toString() , Toast.LENGTH_SHORT).show();
         Log.i("ERROR", error.toString());
     }
 
@@ -120,7 +120,7 @@ public class Fragmento_A extends Fragment implements Response.ErrorListener, Res
         } catch (JSONException e){
             progresso.hide();
 
-            Toast.makeText(getContext(), "Não foi possível listar "+response , Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "Não foi possível listar "+response , Toast.LENGTH_SHORT).show();
 
         }
 

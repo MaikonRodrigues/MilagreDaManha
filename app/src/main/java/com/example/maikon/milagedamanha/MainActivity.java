@@ -1,50 +1,36 @@
 package com.example.maikon.milagedamanha;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.maikon.milagedamanha.Adapters.MyFragmentPageAdapter;
-import com.example.maikon.milagedamanha.Classes.VolleySingleton;
-import com.example.maikon.milagedamanha.Classes.User;
 import com.example.maikon.milagedamanha.Fragmentos.Fragmento_A;
 import com.example.maikon.milagedamanha.Fragmentos.Fragmento_B;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{//, Response.ErrorListener, Response.Listener<JSONObject> {
-    Intent itget;
-    String emailUser, idLogado, nomeLogado;
-    ProgressDialog progresso;
-    JsonObjectRequest jsonObjectReq;
-    User usuarioLogado;
+
+    String emailUser, nomeLogado;
     RequestQueue request;
-    TextView nomeUser, emailUserLog;
+    TextView nomeUser;
     TextView nav_user, nav_email;
+    int idLogado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,23 +40,21 @@ public class MainActivity extends AppCompatActivity
         // verificacao do usuario logado
         SharedPreferences prefs = getSharedPreferences("meu_arquivo_de_preferencias", MODE_PRIVATE);
         boolean jaLogou = prefs.getBoolean("estaLogado", false);
-        SharedPreferences.Editor editor = prefs.edit();
-        String nome = prefs.getString("nome", "sem nome");
+
 
         if(jaLogou) {
             // chama a tela inicial
-            Toast.makeText(this,"Nome das preferencias: "+ nome,Toast.LENGTH_SHORT).show();
+
         }else {
             // chama a tela de login
             Intent intent = new Intent(this, LoginCadastroActivity.class);
             startActivity(intent);
         }
 
-        itget = getIntent();
-        idLogado = itget.getStringExtra("id");
-        nomeLogado = itget.getStringExtra("nome");
-        emailUser = itget.getStringExtra("email");
-        //recuperarUser(idLogado);   //  Recuperando User pelo email
+        idLogado   =  prefs.getInt("id", 0);
+        nomeLogado =  prefs.getString("nome", "sem nome");
+        emailUser  =  prefs.getString("email", "sem nome");
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -98,7 +82,7 @@ public class MainActivity extends AppCompatActivity
         nav_user = (TextView)hView.findViewById(R.id.nomeUser);
         nav_email = (TextView)hView.findViewById(R.id.emailUser);
 
-        nav_user.setText(nome);
+        nav_user.setText(prefs.getString("nome",""));
         nav_email.setText(prefs.getString("email",""));
 
         MyFragmentPageAdapter adapter = new MyFragmentPageAdapter( getSupportFragmentManager() );
@@ -111,63 +95,6 @@ public class MainActivity extends AppCompatActivity
         TabLayout tabLayout = (TabLayout) findViewById(R.id.abas);
         tabLayout.setupWithViewPager(viewPager);
     }
-
-   /* private void recuperarUser(String id) {
-
-        progresso = new ProgressDialog(this);
-        progresso.setMessage("Carregando...");
-        progresso.show();
-
-        String url = "http://www.ellego.com.br/webservice/MilagDaManha/recUser.php"; // armazena o caminho do webservice no servidor
-
-        jsonObjectReq = new JsonObjectRequest(Request.Method.GET, url, null, this,this);
-        //request.add(jsonObjectReq);
-        VolleySingleton.getIntanciaVolley(this).addToRequestQueue(jsonObjectReq);
-    }
-
-    @Override
-    public void onResponse(JSONObject response) {
-        progresso.hide();
-
-        //Toast.makeText(getApplicationContext(), "Busca concluida" , Toast.LENGTH_SHORT).show();
-        usuarioLogado = null;
-        JSONArray json = response.optJSONArray("users"); //passo o objeto para ter acesso as instancias
-
-
-        try {
-
-            for(int i = 0; i<json.length(); i++){
-                usuarioLogado = new User();
-                JSONObject jsonObject = null;
-                jsonObject = json.getJSONObject(i);
-
-                usuarioLogado.setNome(jsonObject.optString("nome"));
-                usuarioLogado.setId(jsonObject.optInt("idusers"));
-                usuarioLogado.setEmail(jsonObject.optString("email"));
-
-               // Toast.makeText(getApplicationContext(), "id User logado e = "+usuarioLogado.getId() , Toast.LENGTH_SHORT).show();
-            }
-           // nav_user.setText(usuarioLogado.getNome());
-           // nav_email.setText(usuarioLogado.getEmail());
-
-
-            progresso.hide();
-
-
-        } catch (JSONException e){
-            progresso.hide();
-
-           // Toast.makeText(getApplicationContext(), "Não foi possível listar "+response , Toast.LENGTH_SHORT).show();
-
-        }
-    }
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        progresso.hide();
-
-       // Toast.makeText(getApplicationContext(), "Não foi possível listar " +error.toString() , Toast.LENGTH_SHORT).show();
-
-    }*/
 
     @Override
     public void onBackPressed() {
@@ -199,8 +126,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         }
         if (id == R.id.action_criapost) {
-            Intent intent = new Intent(this, CriaPostActivity.class).putExtra("id", idLogado);
-            intent.putExtra("nome", nomeLogado);
+            Intent intent = new Intent(this, CriaPostActivity.class);
             startActivity(intent);
         }
 

@@ -3,6 +3,7 @@ package com.example.maikon.milagedamanha;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaScannerConnection;
@@ -54,17 +55,19 @@ public class CriaPostActivity extends AppCompatActivity implements Response.Erro
 
     private static final int COD_SELECIONA = 10;
 
-    String users_idusers, nomeLogado;
+    String  nomeLogado;
     Bitmap bitmap;
+    SharedPreferences prefs;
+    int users_idusers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cria_post);
+        prefs = getSharedPreferences("meu_arquivo_de_preferencias", MODE_PRIVATE);
 
-        it = getIntent();
-        users_idusers = it.getStringExtra("id");
-        nomeLogado = it.getStringExtra("nome");
+        users_idusers = prefs.getInt("id", 0);
+        nomeLogado = prefs.getString("nome", "sem nome");
 
         request = Volley.newRequestQueue(CriaPostActivity.this);
         requestQueue = Volley.newRequestQueue(CriaPostActivity.this);
@@ -134,7 +137,7 @@ public class CriaPostActivity extends AppCompatActivity implements Response.Erro
                 String imagem = converterImgString(bitmap);
                 Map<String,String> parametros = new HashMap<>();
                 parametros.put("descricao", descr);
-                parametros.put("users_idusers", users_idusers);
+                parametros.put("users_idusers", String.valueOf(users_idusers));
                 parametros.put("imagem", imagem);
                 parametros.put("nome_user", nomeLogado);
 

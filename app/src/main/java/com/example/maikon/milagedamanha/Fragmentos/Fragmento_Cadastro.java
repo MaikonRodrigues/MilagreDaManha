@@ -49,10 +49,11 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
     ProgressDialog progresso;
     JsonObjectRequest jsonObjectReq;
     User usuarioLogado;
-    String idLogado;
+    int idLogado;
     ImageView imgUser;
     Bitmap bitmap = null;
     StringRequest stringRequest;
+    String nomeLogado, emailLogado;
 
     private static final int COD_SELECIONA = 10;
 
@@ -129,6 +130,9 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
         JSONObject jsonObject = null;
         try {
             jsonObject = json.getJSONObject(0);
+            idLogado = jsonObject.optInt("idusers");
+            nomeLogado = jsonObject.optString("nome");
+            emailLogado = jsonObject.optString("email");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -138,17 +142,14 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
         SharedPreferences prefs = this.getActivity().getSharedPreferences("meu_arquivo_de_preferencias", Context.MODE_PRIVATE );
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("estaLogado", true);
-        editor.putInt("id",jsonObject.optInt("idusers"));
-        editor.putString("nome",jsonObject.optString("nome"));
-        editor.putString("email",jsonObject.optString("email"));
-
+        editor.putInt("id",idLogado);
+        editor.putString("nome",nomeLogado);
+        editor.putString("email",emailLogado);
         editor.commit();
 
         addFoto(jsonObject.optString("idusers")); // Chamo a funcao para add a foto
 
-        Intent it = new Intent(v.getContext(), MainActivity.class).putExtra("id", jsonObject.optString("idusers"));
-        it.putExtra("nome", jsonObject.optString("nome") );
-        it.putExtra("email", jsonObject.optString("email") );
+        Intent it = new Intent(v.getContext(), MainActivity.class);
         startActivity(it);
     }
 
