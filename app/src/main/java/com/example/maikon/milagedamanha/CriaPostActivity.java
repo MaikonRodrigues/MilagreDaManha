@@ -110,7 +110,7 @@ public class CriaPostActivity extends AppCompatActivity implements Response.Erro
             public void onResponse(String response) {
                 progresso.hide();
 
-                if (response.trim().equalsIgnoreCase("nao registra!")) {
+                if (response.trim().equalsIgnoreCase("nao registra")) {
 
                     Toast.makeText(CriaPostActivity.this, "Registro não inserido, erro: " + response, Toast.LENGTH_SHORT).show();
 
@@ -199,7 +199,7 @@ public class CriaPostActivity extends AppCompatActivity implements Response.Erro
         bitmap.compress(Bitmap.CompressFormat.JPEG,100,array);
         byte[] imagemByte=array.toByteArray();
         String imagemString= Base64.encodeToString(imagemByte,Base64.DEFAULT);
-
+        
         return imagemString;
     }
 
