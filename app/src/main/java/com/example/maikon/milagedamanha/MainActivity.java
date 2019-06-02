@@ -3,6 +3,7 @@ package com.example.maikon.milagedamanha;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.internal.NavigationMenu;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -17,11 +18,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.example.maikon.milagedamanha.Adapters.MyFragmentPageAdapter;
 import com.example.maikon.milagedamanha.Fragmentos.Fragmento_A;
 import com.example.maikon.milagedamanha.Fragmentos.Fragmento_B;
+
+import io.github.yavski.fabspeeddial.FabSpeedDial;
+import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{//, Response.ErrorListener, Response.Listener<JSONObject> {
@@ -59,12 +64,47 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+        // Configuracoes do fab button
+
+        FabSpeedDial fabSpeedDial = (FabSpeedDial) findViewById(R.id.fab_speed_dial);
+        fabSpeedDial.setMenuListener(new FabSpeedDial.MenuListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public boolean onPrepareMenu(NavigationMenu navigationMenu) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemSelected(MenuItem menuItem) {
+
+                Toast.makeText(MainActivity.this,"Configurar", Toast.LENGTH_SHORT).show();
+
+                //  Tentativa de configurar via icon
+                if (menuItem.getIcon().getConstantState().equals(
+                        getResources().getDrawable(R.drawable.ic_menu_send).getConstantState()
+                )) {
+                    Toast.makeText(MainActivity.this,"Deu Certo :", Toast.LENGTH_SHORT).show();
+                }
+
+                //Tentativa de configurar via titulo        obs: nenhuma deu certo
+                String titulo = String.valueOf(menuItem.getTitle());
+                if ( titulo == "Add Post"){
+
+                    Intent intent = new Intent(MainActivity.this, CriaPostActivity.class);
+                    startActivity(intent);
+
+                }else if (titulo == "Realisar Desafio"){
+
+                    Toast.makeText(MainActivity.this,"Ainda nao Implentado", Toast.LENGTH_SHORT).show();
+                   // Intent intent = new Intent(MainActivity.this, CriaPostActivity.class);
+                   // startActivity(intent);
+                }
+                return true;
+            }
+
+            @Override
+            public void onMenuClosed() {
+
             }
         });
 
