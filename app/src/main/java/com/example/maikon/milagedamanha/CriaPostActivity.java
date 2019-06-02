@@ -54,6 +54,7 @@ public class CriaPostActivity extends AppCompatActivity implements Response.Erro
     StringRequest stringRequest;
 
     private static final int COD_SELECIONA = 10;
+    private static final int REQUEST_SELECT_PICTURE = 0x01;
 
     String  nomeLogado;
     Bitmap bitmap;
@@ -81,10 +82,15 @@ public class CriaPostActivity extends AppCompatActivity implements Response.Erro
         btnAddFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                intent.addCategory(Intent.CATEGORY_OPENABLE);
+                startActivityForResult(Intent.createChooser(intent, "Escolha a imagem"), REQUEST_SELECT_PICTURE);
+                /*Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                         android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
-                startActivityForResult(galleryIntent, COD_SELECIONA);
+                startActivityForResult(galleryIntent, COD_SELECIONA);*/
             }
         });
 
