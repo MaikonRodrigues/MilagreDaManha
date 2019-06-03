@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--    Estes itens foram criados para o botao flutuante  -->
     <item
         android:id="@+id/action_addpost"
-        android:icon="@drawable/ic_menu_send"
-        android:title="Add Post" />
+        android:icon="@drawable/ic_menu_manage"
+        android:title="Criar Post" />
 
     <item
         android:id="@+id/action_desafios"
-        android:icon="@android:drawable/btn_star_big_on"
-        android:title="Realisar Desafio" />
+        android:icon="@drawable/ic_menu_send"
+        android:title="Desafios" />
+
 </menu>

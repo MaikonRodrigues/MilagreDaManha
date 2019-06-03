@@ -47,8 +47,8 @@
                                   <option name="values">
                                     <map>
                                       <entry key="assetType" value="IMAGE" />
-                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/chat.png" />
-                                      <entry key="outputName" value="ic_chat" />
+                                      <entry key="imageAsset" value="$USER_HOME$/Downloads/whatsapp-logo.png" />
+                                      <entry key="outputName" value="ic_whatsapp" />
                                     </map>
                                   </option>
                                 </PersistentState>

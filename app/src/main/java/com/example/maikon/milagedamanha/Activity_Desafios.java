@@ -62,7 +62,7 @@ public class Activity_Desafios extends AppCompatActivity implements Response.Err
         progresso.setMessage("Carregando...");
         progresso.show();
 
-        String url = "http://www.ellego.com.br/webservice/pizzaria/listarBebidas.php"; // armazena o caminho do webservice no servidor
+        String url = "http://www.ellego.com.br/webservice/MilagDaManha/listarDesafios.php"; // armazena o caminho do webservice no servidor
 
         jsonObjectReq = new JsonObjectRequest(Request.Method.GET, url, null, this,this);
         request.add(jsonObjectReq);
@@ -82,8 +82,7 @@ public class Activity_Desafios extends AppCompatActivity implements Response.Err
 
         Toast.makeText(getApplicationContext(), "Busca concluida" , Toast.LENGTH_SHORT).show();
         Desafio desafio = null;
-        JSONArray json = response.optJSONArray("bebidas"); //passo o objeto para ter acesso as instancias
-
+        JSONArray json = response.optJSONArray("desafio"); //passo o objeto para ter acesso as instancias
 
         try {
 
@@ -93,7 +92,7 @@ public class Activity_Desafios extends AppCompatActivity implements Response.Err
                 jsonObject = json.getJSONObject(i);
 
                 desafio.setNome(jsonObject.optString("nome"));
-                desafio.setDuracao(jsonObject.optInt("duracao"));
+                desafio.setDuracao(jsonObject.optString("duracao"));
 
                 listaDesafio.add(desafio);
 

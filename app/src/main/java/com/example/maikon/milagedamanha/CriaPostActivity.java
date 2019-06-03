@@ -64,8 +64,9 @@ public class CriaPostActivity extends AppCompatActivity implements Response.Erro
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cria_post);
-        prefs = getSharedPreferences("meu_arquivo_de_preferencias", MODE_PRIVATE);
 
+        // Pegando valores dos arquivos de preferencia
+        prefs = getSharedPreferences("meu_arquivo_de_preferencias", MODE_PRIVATE);
         users_idusers = prefs.getInt("id", 0);
         nomeLogado = prefs.getString("nome", "sem nome");
 

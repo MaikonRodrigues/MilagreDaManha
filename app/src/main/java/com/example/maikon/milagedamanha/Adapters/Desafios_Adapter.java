@@ -20,8 +20,8 @@ import java.util.List;
 public class Desafios_Adapter extends RecyclerView.Adapter<Desafios_Adapter.DesafioHolder> {
 
     List<Desafio> listDesafio;
-    public Desafios_Adapter(List<Desafio> listBeb){
-        this.listDesafio = listBeb;
+    public Desafios_Adapter(List<Desafio> listDesaf){
+        this.listDesafio = listDesaf;
     }
 
 
@@ -52,7 +52,7 @@ public class Desafios_Adapter extends RecyclerView.Adapter<Desafios_Adapter.Desa
                 for (int i = 0; i < getItemCount(); i++){
                     if (position == i){
                         Toast toast = Toast.makeText(v.getContext(),
-                                "Bebida adicionada ao pedido", Toast.LENGTH_SHORT);     //Aparece quando o card e precionado
+                                "Clicou no desafio", Toast.LENGTH_SHORT);     //Aparece quando o card e precionado
                         toast.show();
                     }
                 }

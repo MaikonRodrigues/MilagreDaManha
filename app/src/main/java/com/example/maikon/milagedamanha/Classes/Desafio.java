@@ -7,20 +7,19 @@ import android.util.Base64;
 
 public class Desafio {
 
-   private String nome;
-   private  int duracao;
-   private boolean est1, est2, est3, est4, est5;
+   private String nome, duracao;
+   private boolean etapa1, etapa2, etapa3, etapa4, etapa5;
 
     public Desafio() {    }
 
-    public Desafio(String nome, int duracao, boolean est1, boolean est2, boolean est3, boolean est4, boolean est5) {
+    public Desafio(String nome, String duracao, boolean etapa1, boolean etapa2, boolean etapa3, boolean etapa4, boolean etapa5) {
         this.nome = nome;
         this.duracao = duracao;
-        this.est1 = est1;
-        this.est2 = est2;
-        this.est3 = est3;
-        this.est4 = est4;
-        this.est5 = est5;
+        this.etapa1 = etapa1;
+        this.etapa2 = etapa2;
+        this.etapa3 = etapa3;
+        this.etapa4 = etapa4;
+        this.etapa5 = etapa5;
     }
 
     public String getNome() {
@@ -31,51 +30,51 @@ public class Desafio {
         this.nome = nome;
     }
 
-    public int getDuracao() {
+    public String getDuracao() {
         return duracao;
     }
 
-    public void setDuracao(int duracao) {
+    public void setDuracao(String duracao) {
         this.duracao = duracao;
     }
 
-    public boolean isEst1() {
-        return est1;
+    public boolean isEtapa1() {
+        return etapa1;
     }
 
-    public void setEst1(boolean est1) {
-        this.est1 = est1;
+    public void setEtapa1(boolean etapa1) {
+        this.etapa1 = etapa1;
     }
 
-    public boolean isEst2() {
-        return est2;
+    public boolean isEtapa2() {
+        return etapa2;
     }
 
-    public void setEst2(boolean est2) {
-        this.est2 = est2;
+    public void setEtapa2(boolean etapa2) {
+        this.etapa2 = etapa2;
     }
 
-    public boolean isEst3() {
-        return est3;
+    public boolean isEtapa3() {
+        return etapa3;
     }
 
-    public void setEst3(boolean est3) {
-        this.est3 = est3;
+    public void setEtapa3(boolean etapa3) {
+        this.etapa3 = etapa3;
     }
 
-    public boolean isEst4() {
-        return est4;
+    public boolean isEtapa4() {
+        return etapa4;
     }
 
-    public void setEst4(boolean est4) {
-        this.est4 = est4;
+    public void setEtapa4(boolean etapa4) {
+        this.etapa4 = etapa4;
     }
 
-    public boolean isEst5() {
-        return est5;
+    public boolean isEtapa5() {
+        return etapa5;
     }
 
-    public void setEst5(boolean est5) {
-        this.est5 = est5;
+    public void setEtapa5(boolean etapa5) {
+        this.etapa5 = etapa5;
     }
 }

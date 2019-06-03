@@ -184,7 +184,8 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_grav_atividade) {
             // Handle the camera action
         } else if (id == R.id.nav_desafios) {
-
+            Intent intent = new Intent(this, Activity_Desafios.class);
+            startActivity(intent);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
