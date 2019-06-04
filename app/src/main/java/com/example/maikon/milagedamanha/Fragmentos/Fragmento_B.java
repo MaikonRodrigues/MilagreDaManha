@@ -73,7 +73,7 @@ public class Fragmento_B extends Fragment implements Response.ErrorListener, Res
         jsonObjectReq = new JsonObjectRequest(Request.Method.GET, url, null, this,this);
         VolleySingleton.getIntanciaVolley(getContext()).addToRequestQueue(jsonObjectReq);
         //request.add(jsonObjectReq);
-        Toast.makeText(getContext(), "Id logado :" +id , Toast.LENGTH_SHORT).show();
+
     }
     @Override
     public void onErrorResponse(VolleyError error) {

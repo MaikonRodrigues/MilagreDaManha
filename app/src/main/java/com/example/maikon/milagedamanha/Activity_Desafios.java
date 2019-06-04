@@ -91,6 +91,7 @@ public class Activity_Desafios extends AppCompatActivity implements Response.Err
                 JSONObject jsonObject = null;
                 jsonObject = json.getJSONObject(i);
 
+                desafio.setId(jsonObject.optString("id_desafio"));
                 desafio.setNome(jsonObject.optString("nome"));
                 desafio.setDuracao(jsonObject.optString("duracao"));
 
@@ -99,7 +100,7 @@ public class Activity_Desafios extends AppCompatActivity implements Response.Err
             }
 
             progresso.hide();
-            Desafios_Adapter adapter = new Desafios_Adapter(listaDesafio);
+            Desafios_Adapter adapter = new Desafios_Adapter(listaDesafio, this);
             recyclerDesafios.setAdapter(adapter);
 
         } catch (JSONException e){

@@ -165,7 +165,7 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
 
                 if (response.trim().equalsIgnoreCase("nao registra")) {
 
-                    Toast.makeText(v.getContext(), "Registro não inserido, erro: " + response, Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(v.getContext(), "Registro não inserido, erro: " + response, Toast.LENGTH_SHORT).show();
 
                 } else {
                     Toast.makeText(v.getContext(), "Foto adicionada", Toast.LENGTH_SHORT).show();

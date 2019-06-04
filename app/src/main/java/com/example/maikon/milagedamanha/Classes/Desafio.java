@@ -7,12 +7,13 @@ import android.util.Base64;
 
 public class Desafio {
 
-   private String nome, duracao;
+   private String nome, duracao, id;
    private boolean etapa1, etapa2, etapa3, etapa4, etapa5;
 
     public Desafio() {    }
 
-    public Desafio(String nome, String duracao, boolean etapa1, boolean etapa2, boolean etapa3, boolean etapa4, boolean etapa5) {
+    public Desafio(String id, String nome, String duracao, boolean etapa1, boolean etapa2, boolean etapa3, boolean etapa4, boolean etapa5) {
+        this.id = id;
         this.nome = nome;
         this.duracao = duracao;
         this.etapa1 = etapa1;
@@ -20,6 +21,14 @@ public class Desafio {
         this.etapa3 = etapa3;
         this.etapa4 = etapa4;
         this.etapa5 = etapa5;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNome() {

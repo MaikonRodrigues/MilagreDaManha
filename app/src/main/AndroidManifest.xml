@@ -54,7 +54,8 @@
             android:name=".LoginCadastroActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".CriaPostActivity" />
-        <activity android:name=".Activity_Desafios"></activity>
+        <activity android:name=".Activity_Desafios" />
+        <activity android:name=".GravarDesafioActivity"></activity>
     </application>
 
 </manifest>
