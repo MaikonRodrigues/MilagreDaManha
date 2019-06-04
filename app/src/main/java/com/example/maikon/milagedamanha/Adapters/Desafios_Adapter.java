@@ -63,7 +63,7 @@ public class Desafios_Adapter extends RecyclerView.Adapter<Desafios_Adapter.Desa
             public void onClick(View v) {
                 for (int i = 0; i < getItemCount(); i++){
                     if (position == i){
-                        Toast.makeText(v.getContext(),"Clicou no desafio", Toast.LENGTH_SHORT).show();     //Aparece quando o card e precionado
+                        //Toast.makeText(v.getContext(),"Clicou no desafio ", Toast.LENGTH_SHORT).show();     //Aparece quando o card e precionado
                         Intent intent = new Intent( context, GravarDesafioActivity.class).putExtra("id", id);
                         context.startActivity(intent);
                     }

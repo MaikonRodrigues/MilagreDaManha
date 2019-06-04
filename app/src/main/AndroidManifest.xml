@@ -55,7 +55,8 @@
             android:label="@string/title_activity_login" />
         <activity android:name=".CriaPostActivity" />
         <activity android:name=".Activity_Desafios" />
-        <activity android:name=".GravarDesafioActivity"></activity>
+        <activity android:name=".GravarDesafioActivity" />
+        <activity android:name=".CronometroActivity"></activity>
     </application>
 
 </manifest>

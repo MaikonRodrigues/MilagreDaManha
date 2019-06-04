@@ -17,9 +17,8 @@ public class GravarDesafioActivity extends AppCompatActivity {
 
         //  Pegando dados do id do desafio
         intent = getIntent();
-        id = String.valueOf(intent.getExtras());
+        id = intent.getStringExtra("id");
 
-        // Teste para ver se o id esta sendo recebido corretamente
-        Toast.makeText(this,"id recebido :"+id, Toast.LENGTH_LONG).show();
+
     }
 }

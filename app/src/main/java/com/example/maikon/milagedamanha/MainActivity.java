@@ -169,6 +169,10 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(this, CriaPostActivity.class);
             startActivity(intent);
         }
+        if (id == R.id.action_cronometro) {
+            Intent intent = new Intent(this, CronometroActivity.class);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }
