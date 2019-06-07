@@ -20,14 +20,16 @@ public class CronometroActivity extends AppCompatActivity {
     private static long initialTime;
     private static Handler handler;
     private static boolean isRunning;
-    private static final long MILLIS_IN_SEC = 1000L;
-    private static final int SECS_IN_MIN = 60;
+    private static final long MILLIS_IN_SEC = 1000L, SEC_IN_HORAS = 3600, SECS_IN_MIN = 60;
+    CharSequence tempoAtual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cronometro);
 
+        handler = new Handler();
+        section_label = (TextView) findViewById(R.id.section_label);
         // configuracao do tao flutuante
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -43,12 +45,11 @@ public class CronometroActivity extends AppCompatActivity {
                     isRunning = false;
                     fab.setImageResource(android.R.drawable.ic_media_play);
                     handler.removeCallbacks(runnable);
-                    section_label.setText("00:00");
+                    tempoAtual = section_label.getText();
+                    section_label.setText(tempoAtual);
                 }
             }
         });
-
-
     }
 
     private final static Runnable runnable = new Runnable() {
@@ -56,7 +57,7 @@ public class CronometroActivity extends AppCompatActivity {
         public void run() {
             if (isRunning) {
                 long seconds = (System.currentTimeMillis() - initialTime) / MILLIS_IN_SEC;
-                section_label.setText(String.format("%02d:%02d", seconds / SECS_IN_MIN, seconds % SECS_IN_MIN));
+                section_label.setText(String.format("%02d:%02d:%02d",seconds / SEC_IN_HORAS, seconds / SECS_IN_MIN, seconds % SECS_IN_MIN));
                 handler.postDelayed(runnable, MILLIS_IN_SEC);
             }
         }
