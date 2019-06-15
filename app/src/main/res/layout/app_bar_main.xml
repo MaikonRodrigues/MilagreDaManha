@@ -11,6 +11,8 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
+
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -19,9 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include
-
-        layout="@layout/content_main" />
+    <include layout="@layout/content_main" />
 
     <io.github.yavski.fabspeeddial.FabSpeedDial
         android:id="@+id/fab_speed_dial"

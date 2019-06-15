@@ -77,8 +77,6 @@ public class MainActivity extends AppCompatActivity
             @Override
             public boolean onMenuItemSelected(MenuItem menuItem) {
 
-                Toast.makeText(MainActivity.this,"Configurar", Toast.LENGTH_SHORT).show();
-
                 //  Tentativa de configurar via icon
                 if (menuItem.getIcon().getConstantState().equals(
                         getResources().getDrawable(R.drawable.ic_menu_send).getConstantState()
@@ -88,12 +86,12 @@ public class MainActivity extends AppCompatActivity
 
                 //Tentativa de configurar via titulo        obs: nenhuma deu certo
                 String titulo = String.valueOf(menuItem.getTitle());
-                if ( titulo == "Add Post"){
+                if ( titulo.equals("Criar Post")){
 
                     Intent intent = new Intent(MainActivity.this, CriaPostActivity.class);
                     startActivity(intent);
 
-                }else if (titulo == "Realisar Desafio"){
+                }else if (titulo.equals("Desafios")){
 
                     Toast.makeText(MainActivity.this,"Ainda nao Implentado", Toast.LENGTH_SHORT).show();
                    // Intent intent = new Intent(MainActivity.this, CriaPostActivity.class);
