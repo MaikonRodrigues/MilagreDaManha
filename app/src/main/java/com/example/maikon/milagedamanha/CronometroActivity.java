@@ -1,5 +1,7 @@
 package com.example.maikon.milagedamanha;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -7,14 +9,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class CronometroActivity extends AppCompatActivity {
+
+    ImageView imcro;
+
+
 
     private static TextView section_label;
     private static long initialTime;
@@ -27,6 +37,8 @@ public class CronometroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cronometro);
+        imcro = (ImageView) findViewById(R.id.imgcron);
+        imcro.setImageBitmap(baixarImagem("http://www.ellego.com.br/webservice/MilagDaManha/imagens/6a10bbd480e4c5573d8f3af73ae0454b.jpg"));
 
         handler = new Handler();
         section_label = (TextView) findViewById(R.id.section_label);
@@ -62,6 +74,22 @@ public class CronometroActivity extends AppCompatActivity {
             }
         }
     };
+
+    private Bitmap baixarImagem(String url) {
+        try{
+            URL endereco;
+            InputStream inputStream;
+            Bitmap imagem;
+            endereco = new URL(url);
+            inputStream = endereco.openStream();
+            imagem = BitmapFactory.decodeStream(inputStream);
+            inputStream.close();
+            return imagem;
+        }catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 
 
