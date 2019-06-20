@@ -2,28 +2,33 @@ package com.example.maikon.milagedamanha;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.maikon.milagedamanha.Classes.DownloadImageFromInternet;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class CronometroActivity extends AppCompatActivity {
 
     ImageView imcro;
-
+    String Url = "http://www.ellego.com.br/webservice/MilagDaManha/imagens/6a10bbd480e4c5573d8f3af73ae0454b.jpg";
 
 
     private static TextView section_label;
@@ -37,11 +42,17 @@ public class CronometroActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cronometro);
-        imcro = (ImageView) findViewById(R.id.imgcron);
-        imcro.setImageBitmap(baixarImagem("http://www.ellego.com.br/webservice/MilagDaManha/imagens/6a10bbd480e4c5573d8f3af73ae0454b.jpg"));
+        //imcro = (ImageView) findViewById(R.id.imgcron);
+
+
+       // imcro.setImageBitmap(baixarImagem("http://www.ellego.com.br/webservice/MilagDaManha/imagens/6a10bbd480e4c5573d8f3af73ae0454b.jpg"));
+
+        new DownloadImageFromInternet((ImageView) findViewById(R.id.imgcron))
+                .execute("http://www.ellego.com.br/webservice/MilagDaManha/imagens/6a10bbd480e4c5573d8f3af73ae0454b.jpg" );
 
         handler = new Handler();
         section_label = (TextView) findViewById(R.id.section_label);
+
         // configuracao do tao flutuante
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -75,22 +86,7 @@ public class CronometroActivity extends AppCompatActivity {
         }
     };
 
-    private Bitmap baixarImagem(String url) {
-        try{
-            URL endereco;
-            InputStream inputStream;
-            Bitmap imagem;
-            endereco = new URL(url);
-            inputStream = endereco.openStream();
-            imagem = BitmapFactory.decodeStream(inputStream);
-            inputStream.close();
-            return imagem;
-        }catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-
 
 }
+
+
