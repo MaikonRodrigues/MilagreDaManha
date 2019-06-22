@@ -53,7 +53,7 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
     ImageView imgUser;
     Bitmap bitmap = null;
     StringRequest stringRequest;
-    String nomeLogado, emailLogado;
+    String nomeLogado, emailLogado, stringFotoUser;
 
     private static final int COD_SELECIONA = 10;
 
@@ -109,8 +109,9 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
         progresso.setMessage("Carregando...");
         progresso.show();
         usuarioLogado.setEmail(email.getText().toString());
+        String imagem = converterImgString(bitmap);
         String url = "http://www.ellego.com.br/webservice/MilagDaManha/registroUser.php?nome="+nome.getText().toString()+"&email="+email.getText().toString()+"&senha="
-                +senha.getText().toString(); // armazena o caminho do webservice no servidor
+                +senha.getText().toString()+"&imagemUser="+imagem; // armazena o caminho do webservice no servidor
         url.replace(" ", "%20");
         jsonObjectReq = new JsonObjectRequest(Request.Method.GET, url, null, this,this);
         //request.add(jsonObjectReq);
@@ -133,6 +134,7 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
             idLogado = jsonObject.optInt("idusers");
             nomeLogado = jsonObject.optString("nome");
             emailLogado = jsonObject.optString("email");
+            stringFotoUser = jsonObject.optString("urlfoto");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -147,13 +149,13 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
         editor.putString("email",emailLogado);
         editor.commit();
 
-        addFoto(jsonObject.optString("idusers")); // Chamo a funcao para add a foto
+        //addFoto(jsonObject.optString("idusers")); // Chamo a funcao para add a foto
 
         Intent it = new Intent(v.getContext(), MainActivity.class);
         startActivity(it);
     }
 
-    private void addFoto(final String idusers) {
+    /*private void addFoto(final String idusers) {
         // Crio a string para envio para api
         String url = "http://www.ellego.com.br/webservice/MilagDaManha/registrarFotoUser.php";
 
@@ -178,6 +180,7 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
             public void onErrorResponse(VolleyError error) {
 
                 Toast.makeText(v.getContext(), "Erro ao Registrar erro: "+ error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), "Id passado para a cadastro "+idusers+ "ja o id logado =" +idLogado, Toast.LENGTH_SHORT).show();
                 progresso.hide();
             }
         }) {
@@ -188,6 +191,7 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
                 Map<String,String> parametros = new HashMap<>();
                 parametros.put("imagem", imagem);
                 parametros.put("id", idusers);
+                Toast.makeText(v.getContext(), "Id passado para a cadastro "+idusers+ "ja o id logado =" +idLogado, Toast.LENGTH_SHORT).show();
                 return parametros;
             }
 
@@ -196,7 +200,7 @@ public class Fragmento_Cadastro extends Fragment implements Response.ErrorListen
         // requestQueue.add(stringRequest);
         VolleySingleton.getIntanciaVolley(v.getContext()).addToRequestQueue(stringRequest);
 
-    }
+    }*/
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,14 +28,16 @@ import com.example.maikon.milagedamanha.Fragmentos.Fragmento_B;
 
 import io.github.yavski.fabspeeddial.FabSpeedDial;
 import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
+import com.example.maikon.milagedamanha.Classes.DownloadImageFromInternet;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{//, Response.ErrorListener, Response.Listener<JSONObject> {
 
-    String emailUser, nomeLogado;
+    String emailUser, nomeLogado, stringFotoUser;
     RequestQueue request;
     TextView nomeUser;
     TextView nav_user, nav_email;
+    ImageView nav_image;
     int idLogado;
 
     @Override
@@ -59,6 +62,9 @@ public class MainActivity extends AppCompatActivity
         idLogado   =  prefs.getInt("id", 0);
         nomeLogado =  prefs.getString("nome", "sem nome");
         emailUser  =  prefs.getString("email", "sem nome");
+        stringFotoUser =  prefs.getString("stringFotoUser", "sem nome");
+
+
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -119,9 +125,13 @@ public class MainActivity extends AppCompatActivity
         // pegando textveiws do menu lateral
         nav_user = (TextView)hView.findViewById(R.id.nomeUser);
         nav_email = (TextView)hView.findViewById(R.id.emailUser);
+        nav_image = (ImageView) findViewById(R.id.userImageView);
 
         nav_user.setText(prefs.getString("nome",""));
         nav_email.setText(prefs.getString("email",""));
+
+        // Metodo baixa a imagem do usuario via url e seta no nav_bar
+        new DownloadImageFromInternet((ImageView) nav_image).execute(stringFotoUser);
 
         MyFragmentPageAdapter adapter = new MyFragmentPageAdapter( getSupportFragmentManager() );
         adapter.adicionar( new Fragmento_A(), "Seguindo");

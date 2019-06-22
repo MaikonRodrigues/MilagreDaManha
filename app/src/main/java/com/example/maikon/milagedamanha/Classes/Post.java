@@ -9,13 +9,18 @@ import java.util.Date;
 
 public class Post {
 
-    private String descricao, nomeUser, dadoImg, dadoImg2;
+    private String descricao, nomeUser, dadoImg, dadoImg2, urlImagem;
     private int tempMilagre, qtdEstrelas, id;
     private String dataPost;
     private Image imagemUser, imagePost;
     private Bitmap imagem, imagem2;
 
+    public Post(String urlImagem) {
+        this.urlImagem = urlImagem;
+    }
+
     public Post() {
+
     }
 
     public Post(String descricao, String nomeUser, int tempMilagre, int qtdEstrelas, String dataPost, Image imagemUser, Image imagePost, int id) {
@@ -77,12 +82,13 @@ public class Post {
         this.imagePost = imagePost;
     }
 
+    public String getUrlImagem() {
+        return urlImagem;
+    }
 
-
-
-
-
-
+    public void setUrlImagem(String urlImagem) {
+        this.urlImagem = urlImagem;
+    }
 
     // get and set do nome do usuario
     public String getNomeUser() {

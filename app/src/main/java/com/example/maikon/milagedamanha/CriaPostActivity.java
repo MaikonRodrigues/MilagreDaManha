@@ -106,7 +106,6 @@ public class CriaPostActivity extends AppCompatActivity implements Response.Erro
         String url = "http://www.ellego.com.br/webservice/MilagDaManha/registrarPost.php";
 
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-
             @Override
             public void onResponse(String response) {
                 progresso.hide();

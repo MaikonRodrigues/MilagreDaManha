@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.maikon.milagedamanha.Classes.DownloadImageFromInternet;
 import com.example.maikon.milagedamanha.Classes.Post;
 import com.example.maikon.milagedamanha.R;
 
@@ -51,7 +52,7 @@ public class Post_Adapter extends RecyclerView.Adapter<Post_Adapter.PostHolder> 
         holder.descricao.setText(listPost.get(position).getDescricao());
         holder.postData.setText(listPost.get(position).getDataPost());
 
-        //  Tratamento de erro para falta de imagem nos post
+        /* Tratamento de erro para falta de imagem nos post pegando longBlob
         if (listPost.get(position).getImagem() != null){
 
             listPost.get(position).setDadoImg(listPost.get(position).getDadoImg());
@@ -59,7 +60,13 @@ public class Post_Adapter extends RecyclerView.Adapter<Post_Adapter.PostHolder> 
 
         }else {
             holder.imagemPost.setImageResource(R.drawable.sem_foto);
-        }
+        }*/
+
+                  new DownloadImageFromInternet((ImageView) holder.imagemPost)
+                    .execute(listPost.get(position).getUrlImagem());
+            //holder.imagemPost.setImageBitmap(listPost.get(position).getImagem());
+
+
 
         //  Tratamento de erro para falta de imagem dos usuarios
         if (listPost.get(position).getImagem2() != null){
