@@ -47,8 +47,8 @@ public class CronometroActivity extends AppCompatActivity {
 
        // imcro.setImageBitmap(baixarImagem("http://www.ellego.com.br/webservice/MilagDaManha/imagens/6a10bbd480e4c5573d8f3af73ae0454b.jpg"));
 
-        new DownloadImageFromInternet((ImageView) findViewById(R.id.imgcron))
-                .execute("http://www.ellego.com.br/webservice/MilagDaManha/imagens/6a10bbd480e4c5573d8f3af73ae0454b.jpg" );
+        //new DownloadImageFromInternet((ImageView) findViewById(R.id.imgcron))
+       //         .execute("http://www.ellego.com.br/webservice/MilagDaManha/imagens/6a10bbd480e4c5573d8f3af73ae0454b.jpg" );
 
         handler = new Handler();
         section_label = (TextView) findViewById(R.id.section_label);

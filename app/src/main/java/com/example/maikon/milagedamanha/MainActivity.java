@@ -1,5 +1,6 @@
 package com.example.maikon.milagedamanha;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -52,24 +53,23 @@ public class MainActivity extends AppCompatActivity
 
         if(jaLogou) {
             // chama a tela inicial
+            idLogado   =  prefs.getInt("id", 0);
+            nomeLogado =  prefs.getString("nome", "sem nome");
+            emailUser  =  prefs.getString("email", "sem nome");
+            stringFotoUser =  prefs.getString("stringFotoUser", "sem nome");
 
+            Toast.makeText(MainActivity.this, "id :"+idLogado+ "nome :"+nomeLogado, Toast.LENGTH_SHORT).show();
+
+            // Metodo baixa a imagem do usuario via url e seta no nav_bar
+            new DownloadImageFromInternet((ImageView) nav_image).execute(stringFotoUser);
         }else {
             // chama a tela de login
             Intent intent = new Intent(this, LoginCadastroActivity.class);
             startActivity(intent);
         }
 
-        idLogado   =  prefs.getInt("id", 0);
-        nomeLogado =  prefs.getString("nome", "sem nome");
-        emailUser  =  prefs.getString("email", "sem nome");
-        stringFotoUser =  prefs.getString("stringFotoUser", "sem nome");
-
-
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         // Configuracoes do fab button
 
@@ -130,8 +130,7 @@ public class MainActivity extends AppCompatActivity
         nav_user.setText(prefs.getString("nome",""));
         nav_email.setText(prefs.getString("email",""));
 
-        // Metodo baixa a imagem do usuario via url e seta no nav_bar
-        new DownloadImageFromInternet((ImageView) nav_image).execute(stringFotoUser);
+
 
         MyFragmentPageAdapter adapter = new MyFragmentPageAdapter( getSupportFragmentManager() );
         adapter.adicionar( new Fragmento_A(), "Seguindo");
@@ -169,7 +168,16 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_sair) {
+
+            SharedPreferences prefs = MainActivity.this.getSharedPreferences("meu_arquivo_de_preferencias", Context.MODE_PRIVATE );
+            SharedPreferences.Editor editor = prefs.edit();
+
+            editor.putBoolean("estaLogado", false);
+            editor.putInt("id", 0);
+            editor.putString("nome","");
+            editor.putString("email","");
+            editor.commit();
             Intent intent = new Intent(this, LoginCadastroActivity.class);
             startActivity(intent);
         }

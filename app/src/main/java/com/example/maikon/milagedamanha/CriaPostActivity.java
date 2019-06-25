@@ -97,6 +97,7 @@ public class CriaPostActivity extends AppCompatActivity implements Response.Erro
         });
 
     }
+
     private void carregarWEBService() {
 
         progresso = new ProgressDialog(this);
@@ -135,6 +136,7 @@ public class CriaPostActivity extends AppCompatActivity implements Response.Erro
 
                 String descr = descricao.getText().toString();
                 String imagem = converterImgString(bitmap);
+
                 Map<String,String> parametros = new HashMap<>();
                 parametros.put("descricao", descr);
                 parametros.put("users_idusers", String.valueOf(users_idusers));

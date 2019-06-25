@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class Post {
 
-    private String descricao, nomeUser, dadoImg, dadoImg2, urlImagem;
+    private String descricao, nomeUser, dadoImg, dadoImg2, urlImagem, userUrlImagem;
     private int tempMilagre, qtdEstrelas, id;
     private String dataPost;
     private Image imagemUser, imagePost;
@@ -23,7 +23,7 @@ public class Post {
 
     }
 
-    public Post(String descricao, String nomeUser, int tempMilagre, int qtdEstrelas, String dataPost, Image imagemUser, Image imagePost, int id) {
+    public Post(String descricao, String nomeUser, int tempMilagre, int qtdEstrelas, String dataPost, Image imagemUser, Image imagePost, int id, String userUrlImagem) {
         this.descricao = descricao;
         this.nomeUser = nomeUser;
         this.tempMilagre = tempMilagre;
@@ -32,6 +32,7 @@ public class Post {
         this.imagemUser = imagemUser;
         this.imagePost = imagePost;
         this.id = id;
+        this.userUrlImagem = userUrlImagem;
     }
 
     public String getDadoImg() {
@@ -84,6 +85,14 @@ public class Post {
 
     public String getUrlImagem() {
         return urlImagem;
+    }
+
+    public String getUserUrlImagem() {
+        return userUrlImagem;
+    }
+
+    public void setUserUrlImagem(String userUrlImagem) {
+        this.userUrlImagem = userUrlImagem;
     }
 
     public void setUrlImagem(String urlImagem) {

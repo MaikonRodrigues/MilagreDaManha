@@ -60,15 +60,29 @@ public class Post_Adapter extends RecyclerView.Adapter<Post_Adapter.PostHolder> 
 
         }else {
             holder.imagemPost.setImageResource(R.drawable.sem_foto);
-        }*/
+        }
 
-                  new DownloadImageFromInternet((ImageView) holder.imagemPost)
+        if (listPost.get(position).getUrlImagem().equals("")) {
+
+        }else{
+            // setando imagem do post
+            new DownloadImageFromInternet((ImageView) holder.imagemPost)
                     .execute(listPost.get(position).getUrlImagem());
+        }
+
+        if (listPost.get(position).getUserUrlImagem().equals(" ")) {
+
+        }else{
+            // setando imagem do usuario no post
+            new DownloadImageFromInternet((ImageView) holder.imgUser)
+                    .execute(listPost.get(position).getUserUrlImagem());
+
+        }*/
             //holder.imagemPost.setImageBitmap(listPost.get(position).getImagem());
 
 
 
-        //  Tratamento de erro para falta de imagem dos usuarios
+        /*  Tratamento de erro para falta de imagem dos usuarios
         if (listPost.get(position).getImagem2() != null){
 
             listPost.get(position).setDadoImg2(listPost.get(position).getDadoImg2());
@@ -76,7 +90,7 @@ public class Post_Adapter extends RecyclerView.Adapter<Post_Adapter.PostHolder> 
 
         }else {
             holder.imgUser.setImageResource(R.drawable.com_facebook_profile_picture_blank_square);
-        }
+        }*/
 
 
         holder.meuCard.setOnClickListener(new View.OnClickListener() {
